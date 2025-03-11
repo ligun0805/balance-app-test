@@ -1,29 +1,41 @@
 'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       balance: {
         type: Sequelize.INTEGER,
-        defaultValue: 10000,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          isInt: {
+            msg: 'Balance must be an integer'
+          },
+          min: {
+            args: [0],
+            msg: 'Balance cannot be negative'
+          }
+        }
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.fn('NOW')
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.fn('NOW')
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };
