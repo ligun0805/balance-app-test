@@ -1,9 +1,8 @@
-```markdown
 # Simple Web Application
 
 ## Overview
 
-This project is a simple web application that uses Sequelize as an ORM to interact with a PostgreSQL database. The configuration values for the database connection are stored in a `.env` file for security and flexibility.
+This project is a simple web application that uses **Sequelize** as an ORM to interact with a **PostgreSQL** database. The configuration values for the database connection are stored in a `.env` file for security and flexibility.
 
 This setup establishes the Sequelize connection using configuration values from the `.env` file and automatically loads all the models located in the `models` directory.
 
@@ -67,10 +66,9 @@ To manage your database schema through migrations and seeders, use the following
 
 The application includes basic error handling:
 
-- **Validation Errors:** Returns a `400` status code with a descriptive message.
+- **Validation Errors:** Returns a `400` status code with a descriptive message.  
 - **Server Errors:** Returns a `500` status code with an error message.
 
 ## Conclusion
 
 This setup ensures that your database schema is managed via migrations and seeders, following best practices for database management. Using environment variables for sensitive information provides a secure and flexible configuration.
-```
