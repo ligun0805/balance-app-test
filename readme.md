@@ -4,13 +4,15 @@
 ## Overview
 
 This project is a simple web application that uses Sequelize as an ORM to interact with a PostgreSQL database. The configuration values for the database connection are stored in a `.env` file for security and flexibility.
+And it also includes strong logic for task scheduling and distribution among multiple server instances. We can get task scheduling status using a specific endpoint.
 
 ## Technologies Used
 
 - Node.js
 - Sequelize
 - PostgreSQL
-- dotenv    
+- dotenv 
+- node-cron
 
 ## How to Run  
 
@@ -64,7 +66,8 @@ This setup ensures that your database schema is managed through migrations and s
 ## API Endpoints
 
 
-`POST/update-balance`
+  `POST/update-balance`: Update the user's balance.
+  `GET /tasks`: Get the list of tasks.
 
 Updates the balance of a user.
   
@@ -74,7 +77,9 @@ Updates the balance of a user.
 
 The application includes basic error handling for validation errors and server errors. Validation errors return a 400 status code with a descriptive message, while server errors return a 500 status code with an error message.
 
-  
+## Task Scheduling and Distribution
+
+Tasks are defined in taskManager.js and are distributed evenly among the server instances. Each server instance only schedules and runs tasks that are assigned to its port.
 
 ## Running the Test Script
 
@@ -91,4 +96,4 @@ This script will send multiple requests to the /update-balance endpoint to test 
 This application serves as a robust platform for managing user balances through the POST API endpoint, allowing for efficient updates of user funds. 
 By utilizing Sequelize for database interactions and implementing migrations and seeders, the application ensures a well-structured database schema that adheres to best practices. 
 With environment variables enhancing security and flexibility, this setup provides a solid foundation for further development and scalability in financial or transactional contexts.
-
+By implementing effective task scheduling, the application enhances its functionality, providing users with timely updates and maintaining data integrity while optimizing server resources.
